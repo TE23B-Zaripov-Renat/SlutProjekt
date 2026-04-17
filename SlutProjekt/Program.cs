@@ -32,7 +32,9 @@ public class Program
             }
             else if (choice == "3")
             {
-                FightBoss(player);
+                bool end = FightBoss(player);
+                if (end == true) break;
+
             }
             else
             {
@@ -67,7 +69,7 @@ public class Program
             }
 
             player.ZombiesKilled++;
-            player.Money += 5;
+            player.Money += 30;             // Gör till 5
             player.UpgradeDamage();
 
             Console.WriteLine("Du dödade zombien");
@@ -83,19 +85,58 @@ public class Program
             {
                 break;
             }
+
+            break;
         }
     }
 
-    static void FightBoss(Player player)
+    static bool FightBoss(Player player)
     {
+        player.HitPoints = 100;
         Boss boss = new Boss();
 
         Console.WriteLine();
         Console.WriteLine("Bossen dyker upp");
 
+
         if (player.Weapon != "Pistol")
         {
             Console.WriteLine("Du behöver pistol för att vinna");
+            return false;
         }
+        else if (player.Weapon == "Pistol")
+        {
+            while (boss.HitPoints > 0)
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+
+                if (key.Key == ConsoleKey.Spacebar)
+                {
+                    player.Attack(boss);
+
+                if (boss.HitPoints > 0)
+                {
+                     boss.Attack(player);
+                }
+
+                    Console.WriteLine("Boss HP: " + boss.HitPoints);
+                    Console.WriteLine("Ditt HP: " + player.HitPoints);
+                }
+            }
+
+        }
+        if (player.HitPoints <= 0)
+        {
+            Console.WriteLine("Du dog mot bossen");
+        }
+        else
+        {
+            Console.WriteLine("Du besegrade bossen!");
+            Console.WriteLine("Tryck på valfri knapp för att avsluta spelet");
+            Console.ReadKey();
+        }
+
+        return true;
+        
     }
     }
