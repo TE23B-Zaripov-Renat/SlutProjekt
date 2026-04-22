@@ -80,13 +80,14 @@ public class Program
             Console.WriteLine("Tryck b för att gå tillbaka");
 
             string input = Console.ReadLine();
-
             if (input == "b")
-            {
-                break;
-            }
-
-            break;
+        {
+            break; 
+        }
+            else if (input == "c")
+        {
+            continue; 
+        }
         }
     }
 
@@ -96,7 +97,7 @@ public class Program
         Boss boss = new Boss();
 
         Console.WriteLine();
-        Console.WriteLine("Bossen dyker upp");
+        
 
 
         if (player.Weapon != "Pistol")
@@ -106,6 +107,7 @@ public class Program
         }
         else if (player.Weapon == "Pistol")
         {
+            Console.WriteLine("Bossen dyker upp");
             while (boss.HitPoints > 0)
             {
                 ConsoleKeyInfo key = Console.ReadKey(true);
