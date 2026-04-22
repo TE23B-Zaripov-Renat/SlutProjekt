@@ -69,7 +69,7 @@ public class Program
             }
 
             player.ZombiesKilled++;
-            player.Money += 30;             // Gör till 5
+            player.Money += 5;             
             player.UpgradeDamage();
 
             Console.WriteLine("Du dödade zombien");
