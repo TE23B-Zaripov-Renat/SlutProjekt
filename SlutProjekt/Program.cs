@@ -4,11 +4,13 @@ public class Program
 {
     static void Main()
     {
-        string[] menuChoices = ["Döda zombies", "Shop", "Döda bossen"];
+        List<string> menuChoices = ["Döda zombies", "Shop", "Döda bossen"];
 
+        Console.WriteLine("--------------------------");
         Console.WriteLine("Hej och välkommen till gruvan");
         Console.WriteLine("Ditt mål är att döda bossen");
         Console.WriteLine("Du blir starkare när du dödar zombies");
+        Console.WriteLine("--------------------------");
 
         Player player = new Player("Spelare");
 
@@ -16,6 +18,7 @@ public class Program
         {
             Console.WriteLine();
             Console.WriteLine("Vad vill du göra?");
+            Console.WriteLine("--------------------------");
             Console.WriteLine("1. " + menuChoices[0]);
             Console.WriteLine("2. " + menuChoices[1]);
             Console.WriteLine("3. " + menuChoices[2]);
@@ -51,6 +54,7 @@ public class Program
             Zombie zombie = new Zombie();
 
             Console.WriteLine();
+            Console.WriteLine("--------------------------");
             Console.WriteLine("En zombie dyker upp");
             Console.WriteLine("Tryck på space för att attackera");
 
@@ -62,32 +66,32 @@ public class Program
                 {
                     player.Attack(zombie);
                     zombie.Attack(player);
-
+                    Console.WriteLine("--------------------------");
                     Console.WriteLine("Zombie HP: " + zombie.HitPoints);
                     Console.WriteLine("Ditt HP: " + player.HitPoints);
                 }
             }
 
             player.ZombiesKilled++;
-            player.Money += 5;             
+            player.Money += 5;
             player.UpgradeDamage();
-
+            Console.WriteLine("--------------------------");
             Console.WriteLine("Du dödade zombien");
             Console.WriteLine("Damage: " + player.Damage);
             Console.WriteLine("Pengar: " + player.Money);
-
+            Console.WriteLine("--------------------------");
             Console.WriteLine("Tryck c för att fortsätta");
             Console.WriteLine("Tryck b för att gå tillbaka");
 
             string input = Console.ReadLine();
             if (input == "b")
-        {
-            break; 
-        }
+            {
+                break;
+            }
             else if (input == "c")
-        {
-            continue; 
-        }
+            {
+                continue;
+            }
         }
     }
 
@@ -97,16 +101,18 @@ public class Program
         Boss boss = new Boss();
 
         Console.WriteLine();
-        
+
 
 
         if (player.Weapon != "Pistol")
         {
+            Console.WriteLine("--------------------------");
             Console.WriteLine("Du behöver pistol för att vinna");
             return false;
         }
         else if (player.Weapon == "Pistol")
         {
+            Console.WriteLine("--------------------------");
             Console.WriteLine("Bossen dyker upp");
             while (boss.HitPoints > 0)
             {
@@ -116,11 +122,11 @@ public class Program
                 {
                     player.Attack(boss);
 
-                if (boss.HitPoints > 0)
-                {
-                     boss.Attack(player);
-                }
-
+                    if (boss.HitPoints > 0)
+                    {
+                        boss.Attack(player);
+                    }
+                    Console.WriteLine("--------------------------");
                     Console.WriteLine("Boss HP: " + boss.HitPoints);
                     Console.WriteLine("Ditt HP: " + player.HitPoints);
                 }
@@ -129,16 +135,18 @@ public class Program
         }
         if (player.HitPoints <= 0)
         {
+            Console.WriteLine("--------------------------");
             Console.WriteLine("Du dog mot bossen");
         }
         else
         {
+            Console.WriteLine("--------------------------");
             Console.WriteLine("Du besegrade bossen!");
             Console.WriteLine("Tryck på valfri knapp för att avsluta spelet");
             Console.ReadKey();
         }
 
         return true;
-        
+
     }
-    }
+}

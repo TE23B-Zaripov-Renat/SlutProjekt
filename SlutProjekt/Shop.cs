@@ -17,22 +17,31 @@ public class Shop
 
             if (choice == "1")
             {
-                if (player.Money >= 10)
+                if (player.Weapon == "Knife")
                 {
-                    player.Money -= 10;
-                    player.Damage += 2;
-                    player.Weapon = "Knife";
+                    Console.WriteLine("Du har redan en kniv");
+                }
+                else if (player.Money >= 10)
+                        {
+                            player.Money -= 10;
+                            player.Damage += 2;
+                            player.Weapon = "Knife";
 
-                    Console.WriteLine("Du köpte en kniv");
-                }
-                else
-                {
-                    Console.WriteLine("Du har inte råd");
-                }
+                            Console.WriteLine("Du köpte en kniv");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Du har inte råd");
+                        }
             }
+
             else if (choice == "2")
             {
-                if (player.Money >= 20)
+                if (player.Weapon == "Sword")
+            {
+                Console.WriteLine("Du har redan ett svärd");
+            }
+                else if (player.Money >= 20)
                 {
                     player.Money -= 20;
                     player.Damage += 5;
@@ -47,7 +56,11 @@ public class Shop
             }
             else if (choice == "3")
             {
-                if (player.Money >= 30)
+                if (player.Weapon == "Pistol")
+                {
+                    Console.WriteLine("Du har redan en pistol");
+                }
+                else if (player.Money >= 30)
                 {
                     player.Money -= 30;
                     player.Damage += 10;
